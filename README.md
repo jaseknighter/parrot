@@ -1,2 +1,31 @@
 # parrot
- cv recorder and player for norns+crow 
+a cv recorder and player for norns+crow 
+
+`parrot` allows crow inputs 1 and 2 to record cv which may then be replayed out of crow outputs 1-4.
+
+## instructions
+
+### key/encoder controls
+* e2: select previous/next control
+* k2/3: select previous/next sub-control
+* k1+e2: display instructions
+
+### features
+the `parrot` script's features are accessable from the scripts main screen and from the `PARAMETERS` menu
+
+* `bucket zoom` (bz): scale the norns display of cv recorded from crow inputs 1 and 2
+* `bucket record` (br): turn the cv recording from crow inputs 1 & 2  on and off
+* `bucket loop length` (bl): set the amount cv to play that has been recorded from crow inputs 1 & 2 record (up to ~15 seconds)
+* `tap assignment` (ta): routes the cv recorded to crow inputs 1 & 2 to the 4 crow outputs
+* `tap delay` (td): delay the recorded cv sent to crow outputs 1-4
+* `quantize taps` (tq): quantize the cv sent to crow outputs 1-4 
+
+### todo
+* tbd
+
+## requirements
+norns
+crow
+
+## credits
+`parrot` is based on the `cvdelay` script built into @whimsicalraps [bowering](https://github.com/whimsicalraps/bowering) crow script collection
