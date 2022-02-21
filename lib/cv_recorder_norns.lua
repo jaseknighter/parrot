@@ -10,6 +10,10 @@ cv_recorder = {}
 
 cv_recorder.bucket1 = {}
 cv_recorder.bucket2 = {}
+-- cv_recorder.tap1 = {}
+-- cv_recorder.tap2 = {}
+-- cv_recorder.tap3 = {}
+-- cv_recorder.tap4 = {}
 cv_recorder.bucket_index1 = 1
 cv_recorder.bucket_index2 = 1
 cv_recorder.active_bucket_length1 = MAX_VISIBLE_BUCKET

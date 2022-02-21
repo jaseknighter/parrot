@@ -34,10 +34,10 @@ public{loop_restart2 = 'false'}:range('false','true')
 -- public{bucket2_slice = 1}:range(-5,10)
 -- public{bucket2_ix = 1}:range(1,MAX_BUCKET_LENGTH)
 
-public{cv_assignment_tap1 = 1}:range(1,2)
-public{cv_assignment_tap2 = 1}:range(1,2)
-public{cv_assignment_tap3 = 1}:range(1,2)
-public{cv_assignment_tap4 = 1}:range(1,2)
+public{cv_assignment_tap1 = 1}:range(1,6)
+public{cv_assignment_tap2 = 1}:range(1,6)
+public{cv_assignment_tap3 = 1}:range(1,6)
+public{cv_assignment_tap4 = 1}:range(1,6)
 
 public{quantize_tap1 = 'off'}:options{'off','on'}
 public{quantize_tap2 = 'off'}:options{'off','on'}
@@ -45,7 +45,7 @@ public{quantize_tap3 = 'off'}:options{'off','on'}
 public{quantize_tap4 = 'off'}:options{'off','on'}
 
 public{notes = {11,12,13}}
-public{test = 1}:action(p_notes)
+
 
 public{reset1 = 0}
 public{reset2 = 0}
@@ -61,10 +61,9 @@ cv_mode2 = 0
 
 inited = false
 
---public{bucket_size=#bucket}
-
-  
 function init()
+    public{capture = 0}:action(p_notes)
+    
     -- stream rate is set to ___kHz so the crow memory buffer doesn't fill up
     local STREAM_RATE = 0.008 --8 kHz
     print("stream rate (kHz): " .. STREAM_RATE )
@@ -82,7 +81,7 @@ function init()
     
     public.view.input[1]( true )
     public.view.input[2]( true )
-    print("public.notes[3]",public.notes[1],public.notes[3],public.notes[3])
+    -- public.view.all( true )
     inited = true
 end
 
@@ -168,6 +167,28 @@ function output_volts(bucket, tap, quant, volts)
     return volts 
 end 
 
+function output_and_volts(tap)
+    local volts1 = peek(1, tap) 
+    local volts2 = peek(2, tap) 
+    local volts = volts1 <= volts2 and volts1 or volts2
+    -- print(volts1 .. "/" .. volts2 .. "/" .. volts)
+    return volts 
+end 
+
+function output_or_volts(tap)
+    local volts1 = peek(1, tap) 
+    local volts2 = peek(2, tap) 
+    local volts = volts1 >= volts2 and volts1 or volts2
+    -- print(volts1 .. "/" .. volts2 .. "/" .. volts)
+    return volts 
+end 
+
+function rectify(volts)
+    local rectified
+    if volts < 0 then rectified = -1 * volts else rectified = volts end
+    return rectified
+end
+
 input[1].stream = function(v)
     if (inited == true) then
         if public.reset1 == 1 then 
@@ -187,10 +208,54 @@ input[1].stream = function(v)
                 output[4].volts = output_volts(1, public.tap4_b1, public.quantize_tap4, v)
             end
             
+            -- check for RECTIFY  
+            if public.cv_assignment_tap1 == 5 then 
+                output[1].volts = output_volts(1, public.tap1_b1, public.quantize_tap1, rectify(v))
+            end
+            if public.cv_assignment_tap2 == 5 then 
+                output[2].volts = output_volts(1, public.tap2_b1, public.quantize_tap2, rectify(v))
+            end
+            if public.cv_assignment_tap3 == 5 then 
+                output[3].volts = output_volts(1, public.tap3_b1, public.quantize_tap3, rectify(v))
+            end
+            if public.cv_assignment_tap4 == 5 then 
+                output[4].volts = output_volts(1, public.tap4_b1, public.quantize_tap4, rectify(v))
+            end
+
+            
             -- local record_cv = input[2].volts
             if public.recorder_state_b1 == "on" then
                 poke(1, v, write1)
             end
+
+            -- check for OR  
+            if public.cv_assignment_tap1 == 3 then 
+                output[1].volts = output_or_volts(1)
+            end
+            if public.cv_assignment_tap2 == 3 then 
+                output[2].volts = output_or_volts(2)
+            end
+            if public.cv_assignment_tap3 == 3 then 
+                output[3].volts = output_or_volts(3)
+            end
+            if public.cv_assignment_tap4 == 3 then 
+                output[4].volts = output_or_volts(4)
+            end
+            
+            -- check for AND  
+            if public.cv_assignment_tap1 == 4 then 
+                output[1].volts = output_and_volts(1)
+            end
+            if public.cv_assignment_tap2 == 4 then 
+                output[2].volts = output_and_volts(2)
+            end
+            if public.cv_assignment_tap3 == 4 then 
+                output[3].volts = output_and_volts(3)
+            end
+            if public.cv_assignment_tap4 == 4 then 
+                output[4].volts = output_and_volts(4)
+            end
+
             if (write1 % public.loop_length_b1) == 0 then
                 -- print("restart 1",public.loop_length_b1)
                 public.loop_restart1 = "true"
@@ -219,6 +284,21 @@ input[2].stream = function(v)
             if public.cv_assignment_tap4 == 2 then 
                 output[4].volts = output_volts(2, public.tap4_b2, public.quantize_tap4, v)
             end
+
+            -- check for RECTIFY  
+            if public.cv_assignment_tap1 == 6 then 
+                output[1].volts = output_volts(1, public.tap1_b1, public.quantize_tap1, rectify(v))
+            end
+            if public.cv_assignment_tap2 == 6 then 
+                output[2].volts = output_volts(1, public.tap2_b1, public.quantize_tap2, rectify(v))
+            end
+            if public.cv_assignment_tap3 == 6 then 
+                output[3].volts = output_volts(1, public.tap3_b1, public.quantize_tap3, rectify(v))
+            end
+            if public.cv_assignment_tap4 == 6 then 
+                output[4].volts = output_volts(1, public.tap4_b1, public.quantize_tap4, rectify(v))
+            end
+            
            
             -- local record_cv = input[2].volts
             if public.recorder_state_b2 == "on" then

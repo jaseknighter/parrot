@@ -16,7 +16,13 @@ the `parrot` script's features are accessable from the scripts main screen and f
 * `bucket zoom` (bz): scale the norns display of cv recorded from crow inputs 1 and 2
 * `bucket record` (br): turn the cv recording from crow inputs 1 & 2  on and off
 * `bucket loop length` (bl): set the amount cv to play that has been recorded from crow inputs 1 & 2 record (up to ~15 seconds)
-* `tap assignment` (ta): routes the cv recorded to crow inputs 1 & 2 to the 4 crow outputs
+* `tap assignment` (ta): routes the cv recorded to crow inputs 1 & 2 to the 4 crow outputs. there are six assignment options:
+  * `in1`: outputs crow input 1
+  * `in2`: outputs crow input 2
+  * `or12`: compares the voltages of inputs 1 and 2, outputing the higher voltage 
+  * `&12`: compares the voltages of inputs 1 and 2, outputing the lower voltage 
+  * `rec1`: outputs crow input 1, turning any negative voltages positive
+  * `rec2`: outputs crow input 2, turning any negative voltages positive
 * `tap delay` (td): delay the recorded cv sent to crow outputs 1-4
 * `quantize taps` (tq): quantize the cv sent to crow outputs 1-4 
 

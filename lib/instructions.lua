@@ -26,7 +26,7 @@ instructions.display = function ()
     screen.text("  length of buckets 1/2")
   elseif cv_recorder.active_control == 4 then
     screen.move(1, 44)
-    screen.text("  ta=tap assignement")
+    screen.text("  ta=tap assignment")
     screen.move(1, 52)
     screen.text("  link inputs to outputs")
   elseif cv_recorder.active_control == 5 then

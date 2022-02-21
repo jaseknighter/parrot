@@ -13,7 +13,7 @@ params:add_separator("bucket controls")
 for i=1,2,1 do
   params:add{
     type = "option", id = "bucket_zoom" .. i, name = "zoom" .. i, 
-    options = {0.25,0.5,1,2,3,4,6,8,10,12},
+    options = {0.25,0.5,1,2,3,4,6,8,10,12,18,24},
     default = 3,
   }
 end
@@ -56,7 +56,7 @@ params:add_group("tap delay assignments", 4)
 for i=1,4,1 do
   params:add{
     type = "option", id = "cv_assignment_tap" .. i, name = "cv assignment tap " .. i, 
-    options = {"in1","in2"},
+    options = {"in1","in2","or12","&12","rec1","rec2"},
     default = 1,
     action = function(value) 
       if i==1 then crow.public.cv_assignment_tap1 = value  
