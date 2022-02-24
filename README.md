@@ -30,8 +30,8 @@ the `parrot` script's features are accessable from the scripts main screen and f
 * tbd
 
 ## requirements
-norns
-crow
+* norns
+* crow
 
 ## credits
 `parrot` is based on the `cvdelay` script built into @whimsicalraps [bowering](https://github.com/whimsicalraps/bowering) crow script collection
