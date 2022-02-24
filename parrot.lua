@@ -1,6 +1,6 @@
 ---parrot
--- 0.0 @jaseknighter
--- lines: llllllll.co/t/XXXXXXX
+-- 1.0 @jaseknighter
+-- lines: llllllll.co/t/53083
 -- 
 -- a cv recorder and player 
 -- for norns+crow 
