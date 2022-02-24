@@ -39,6 +39,4 @@ the *parrot* script's features are accessable from the scripts main screen and f
 ## credits
 *parrot* is based on the *cvdelay* script built into @whimsicalraps [bowering](https://github.com/whimsicalraps/bowering) crow script collection following a suggestion by @lijnenspel.
 
-many, many thank to @p3r7 for making a lovely parrot image and to @justmat for creating a crow image for his [crow_talk](https://llllllll.co/t/crow-talk/41560) script
-
-
+many, many thank to @p3r7 for creating a lovely parrot image for this script and to @justmat for the crow image i am borrowing from his [crow_talk](https://llllllll.co/t/crow-talk/41560) script.
