@@ -15,19 +15,19 @@ include "lib/includes"
 -- init
 ------------------------------
 function init()
+  -- set sensitivity of the encoders
+  norns.enc.sens(1,6)
+  norns.enc.sens(2,6)
+  norns.enc.sens(3,6)
+  
+  pages = UI.Pages.new(0, 1)
+  
+  page_scroll(1)
+  set_redraw_timer()
+  initializing_norns = false
   if norns.crow.connected() == true then
-    -- set sensitivity of the encoders
-    norns.enc.sens(1,6)
-    norns.enc.sens(2,6)
-    norns.enc.sens(3,6)
-
-    pages = UI.Pages.new(0, 1)
-      
-    page_scroll(1)
-    set_redraw_timer()
     set_params()
     clock.run(finish_init)
-    initializing_norns = false
   else
     print("crow not connected. :(")
   end

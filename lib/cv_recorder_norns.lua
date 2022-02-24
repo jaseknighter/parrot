@@ -20,7 +20,7 @@ cv_recorder.active_bucket_length1 = MAX_VISIBLE_BUCKET
 cv_recorder.active_bucket_length2 = MAX_VISIBLE_BUCKET
 cv_recorder.cv_sampling_rate1 = 1
 cv_recorder.cv_sampling_rate2 = 1
-cv_recorder.ellipses = ""
+-- cv_recorder.ellipses = ""
 
 cv_recorder.nav_labels = {
   "bz",
@@ -52,6 +52,8 @@ P = norns.crow.public
 
 -- local BOWERYPATH = norns.state.path .. "crow/"
 norns.crow.loadscript("cv_recorder_crow.lua")
+
+
 
 function cv_recorder.set_cv_delay(output_num)
   -- alt_param = "false"
@@ -356,49 +358,54 @@ end
 function cv_recorder.draw_top_nav (msg)
   if show_instructions == true then
     subnav_title = "instructions"
-  elseif initializing_crow == true then
-    subnav_title = "initializing crow" .. cv_recorder.ellipses
-    cv_recorder.ellipses = cv_recorder.ellipses== "......" and "" or cv_recorder.ellipses .. "."
+  -- elseif initializing_crow == true and norns.crow.connected() == true then
+  --   subnav_title = "initializing crow" .. cv_recorder.ellipses
+  --   cv_recorder.ellipses = cv_recorder.ellipses== "......" and "" or cv_recorder.ellipses .. "."
+  -- elseif norns.crow.connected() == false then
+  --   subnav_title = "crow not connected :("
   else
     subnav_title = ""
   end
-  -- subnav_title = cv_recorder.active_control .. ": " .. cv_recorder.nav_labels[cv_recorder.active_control] 
-  -- if msg == nil then
-    screen.move(1,12)
-    screen.text(subnav_title)
-    -- screen.text(subnav_title .. ": " .. cv_recorder.active_sub_control)
-  -- end
+
+  screen.move(1,12)
+  screen.text(subnav_title)
 end
+
+
 
 function cv_recorder.update()
   screen.clear()
-  if saving == false then
-    cv_recorder.draw_top_nav()
+  if intro_animation.anim_done == false then
+    intro_animation.update()
   else
-    cv_recorder.draw_top_nav("saving")
-  end
+    if saving == false then
+      cv_recorder.draw_top_nav()
+    else
+      cv_recorder.draw_top_nav("saving")
+    end
 
-  if  show_instructions == true and menu_status == false then
-    instructions.display()
-  elseif initializing_crow == false then
-    cv_recorder.draw_player_recorder_controls()
-  end
+    if  show_instructions == true and menu_status == false then
+      instructions.display()
+    elseif initializing_crow == false then
+      cv_recorder.draw_player_recorder_controls()
+    end
 
-  if initializing_crow == false then
-    cv_recorder.draw_player_recorder_sub_controls()
-  end
+    if initializing_crow == false then
+      cv_recorder.draw_player_recorder_sub_controls()
+    end
 
-  if cv_recorder.active_control == 1 then
-  elseif cv_recorder.active_control == 2 then  
-  elseif cv_recorder.active_control == 3 then  
+    if cv_recorder.active_control == 1 then
+    elseif cv_recorder.active_control == 2 then  
+    elseif cv_recorder.active_control == 3 then  
+    end
+    -- if cv_recorder.active_control == 1 then
+    --   cv_recorder.draw_player_recorder_controls()
+    -- elseif cv_recorder.active_control == 2 then  
+    --   cv_recorder.draw_delay_ui()
+    -- elseif cv_recorder.active_control == 3 then  
+    --   cv_recorder.draw_reset_loop_ui()
+    -- end
   end
-  -- if cv_recorder.active_control == 1 then
-  --   cv_recorder.draw_player_recorder_controls()
-  -- elseif cv_recorder.active_control == 2 then  
-  --   cv_recorder.draw_delay_ui()
-  -- elseif cv_recorder.active_control == 3 then  
-  --   cv_recorder.draw_reset_loop_ui()
-  -- end
   screen.update()
 end
 
