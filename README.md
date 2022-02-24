@@ -13,7 +13,7 @@ a cv recorder and player for norns+crow
 
 ### key/encoder controls
 * e2: select previous/next control
-* k2/3: select previous/next sub-control
+* k2/k3: select previous/next sub-control
 * k1+e2: display instructions
 
 ### features
