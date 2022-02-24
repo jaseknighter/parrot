@@ -8,6 +8,9 @@ a cv recorder and player for norns+crow
 
 ## instructions
 
+### installation
+`;install https://github.com/jaseknighter/parrot`
+
 ### key/encoder controls
 * e2: select previous/next control
 * k2/3: select previous/next sub-control
