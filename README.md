@@ -1,4 +1,7 @@
+![](images/heart.png)
+
 # parrot
+
 a cv recorder and player for norns+crow 
 
 *parrot* allows crow inputs 1 and 2 to record cv which may then be replayed out of crow outputs 1-4.
@@ -34,4 +37,8 @@ the *parrot* script's features are accessable from the scripts main screen and f
 * crow
 
 ## credits
-*parrot* is based on the *cvdelay* script built into @whimsicalraps [bowering](https://github.com/whimsicalraps/bowering) crow script collection
+*parrot* is based on the *cvdelay* script built into @whimsicalraps [bowering](https://github.com/whimsicalraps/bowering) crow script collection following a suggestion by @lijnenspel.
+
+many, many thank to @p3r7 for making a lovely parrot image and to @justmat for creating a crow image for his [crow_talk](https://llllllll.co/t/crow-talk/41560) script
+
+
