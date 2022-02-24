@@ -17,7 +17,7 @@ a cv recorder and player for norns+crow
 * k1+e2: display instructions
 
 ### features
-the *parrot* script's features are accessable from the scripts main screen and from the `PARAMETERS` menu
+the *parrot* script's features are accessable from the script's main screen and from the `PARAMETERS` menu
 
 * `bucket zoom` (bz): scale the norns display of cv recorded from crow inputs 1 and 2
 * `bucket record` (br): turn the cv recording from crow inputs 1 & 2  on and off
