@@ -1,4 +1,4 @@
-![](images/heart.png)
+<img src="https://github.com/jaseknighter/parrot/blob/main/images/birdies.png" width="400">
 
 # parrot
 
